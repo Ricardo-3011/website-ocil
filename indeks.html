@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selamat Ulang Tahun, Sayang!</title>
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        background: linear-gradient(to right bottom, #ffdde1, #ee9ca7);
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .slider-wrapper {
+        position: relative;
+        width: 90%;
+        max-width: 700px;
+        min-height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .slide {
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 40px 60px;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        position: absolute;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        pointer-events: none;
+        z-index: 5;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .slide.active {
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 10;
+      }
+
+      h1 {
+        color: #d81b60;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: #4a4a4a;
+        font-size: 1.2em;
+        line-height: 1.8;
+      }
+
+      .pesan-cinta {
+        font-style: italic;
+        color: #c2185b;
+        font-weight: 500;
+      }
+
+      .penutup {
+        margin-top: 30px;
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .petunjuk-klik {
+        font-size: 0.9em;
+        color: #555;
+        margin-top: 30px;
+        animation: pulse-subtle 2s infinite;
+      }
+
+      @keyframes pulse-subtle {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .hati-utama {
+        color: #e91e63;
+        font-size: 3em;
+        animation: pulse-main 1.5s infinite;
+      }
+
+      @keyframes pulse-main {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.15);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .falling-heart {
+        position: absolute;
+        top: -10vh;
+        color: #ff8a80;
+        font-size: 1.5em;
+        pointer-events: none;
+        animation: fall 10s linear infinite;
+        opacity: 0;
+        z-index: 1;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(0) translateX(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(120vh) translateX(50px);
+          opacity: 0;
+        }
+      }
+
+      /* --- Tambahan untuk galeri foto --- */
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .gallery img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.1);
+      }
+
+      /* Tombol kontrol musik */
+      .music-control {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.7);
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s;
+      }
+
+      .music-control:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+
+  <body onclick="nextSlide()">
+    <!-- Kolom backsound -->
+    <audio id="backsound" autoplay loop>
+      <source src="audio/MUSIK1.mpeg" type="audio/mpeg" />
+      Browser kamu tidak mendukung pemutar audio.
+    </audio>
+
+    <!-- Tombol play/pause musik -->
+    <button class="music-control" id="musicButton">🔈</button>
+
+    <div class="slider-wrapper">
+      <div class="slide active">
+        <h1>Selamat Ulang Tahun, Cintaku🤍</h1>
+        <p>Aku Punya Sesuatu Untuk Kamu Dibaca Dan Simpan Dihati Ya Cantik...🫶</p>
+        <p class="petunjuk-klik">(Klik Disini Ya Bububbbbb💖)</p>
+      </div>
+
+      <div class="slide">
+        <h1>Haii Novia Permata Sari Atau Ocilll Nya Koko🥰</h1>
+        <p class="pesan-cinta">Aku Sebenernya Bingung Gimana Caranya Untuk Memberikan Sesuatu Yang Spesial Dihari Lahir Kamu. Tapi Semoga Kamu Suka Ya Sayanggg😘</p>
+        <p class="petunjuk-klik">(ENJOYYY Ya Cantik...🫣)</p>
+      </div>
+
+      <div class="slide">
+        <p>Haii Kamu Ocil Nya Koko Hehe...🤍 Hari Ini Kamu Ulang Tahun Ya Bubub🥳...Selamat Ulang Tahun Ya Bubub🥳🥰. Ini Adalah Hari Ulang Tahun Kamu Tepat 24 Tahun Lalu Kamu Dilahirkan👶, Dari Ayahanda Bapak Yusrizal👨 Dan Ibunda Mama Yusmelina👩. Yaitu Calon Mertuaku Esok Hehe🙈...Aamiin Inshaallah...🤲</p>
+        <p class="pesan-cinta">
+          Do'a Aku Untuk Kamu... Semoga Kamu Panjang Umur🤲, Sehat Selalu🤲, Dilancarkan Rezekinya🤲, Lolos Dapet Gelar PPG Nyaa🤲, Lolos Seleksi CPNS🤲, Dapet Beasiswa S2 Diluar Negeri Bareng Aku Hehe🤲, Terus Nanti Bisa Jadi Seorang Dosen
+          Yang Hebat🤲, Terus Lanjut Jadi Kaprodi Yang Diandalkan🤲, Terus Lanjut Jadi Seorang Rektor Yang Inspiratif Dan Dikenal Banyak Orang Aamiin Inshaallah🤲, Sama Tambah Cantik🥰, Tambah Emeshh😍, Terus Dikurangin Genit Nya Ya
+          Bububbb😤,Dan Aku Bersyukur Banget Bisa Menjadi Bagian Dari Cerita Kamu Sampai Kamu Meraih Cita-Cita Yang Tercapai Semuanya...Aamiin Inshaallah🤲🤍.
+        </p>
+        <p class="petunjuk-klik">( Di Encet Agi ya cantik...Semoga Bubub Suka😘)</p>
+      </div>
+
+      <div class="slide">
+        <h1>Momen Aku Dan Kamu 💞</h1>
+        <p>Beberapa Foto Yang Aku Pasang Disini Cuman Segini Karena Kamu Jarang Kirim Foto Ke Aku...😤</p>
+        <div class="gallery">
+          <img src="img/FOTO1.jpg" alt="Foto kenangan 1" />
+          <img src="img/FOTO2.jpg" alt="Foto kenangan 2" />
+          <img src="img/FOTO-1.jpg" alt="Foto kenangan 3" />
+          <img src="img/FOTO4.jpg" alt="Foto kenangan 4" />
+          <img src="img/FOTO-2.jpg" alt="Foto kenangan 5" />
+          <img src="img/FOTO5.jpg" alt="Foto kenangan 6" />
+          <img src="img/FOTO-3.jpg" alt="Foto kenangan 7" />
+          <img src="img/FOTO-4.jpg" alt="Foto kenangan 8" />
+        </div>
+        <p class="petunjuk-klik">(Jangan Nyerah Ya Bubub Pencet-Nya xixixii😚)</p>
+      </div>
+
+      <div class="slide">
+        <h1>Harapanku...😇</h1>
+        <p>
+          Semoga Kita Terus Bersama-Sama Sampai Kita Tepatin Janji Kita Berdua...Apapun Kondisinya Dan Situasinya Harus Tetap Bertahan🤝 Oteeeyyyy Loppyuuuu😘. Maafin Aku Masih Suka Buat Kamu Marah, Kesel, Sebel Karena Tingkah Laku Aku Dan
+          Sifat Aku🙏🥺. Maafiin Aku Belum Jadi Yang Terbaik Buat Kamu🥺. Tapi Aku Berusaha Menjadi Yang Terbaik Diantara Yang Terbaik Dari Cowok Yang Kamu Kenal Sebelumnya Dari Segi Apapun😎, Sehingga Menjadi Menantu Idaman Mama Yusmelina
+          xixii😎...Aamiin Inshaallah🤲. Dan Cinta Kita Semakin Kuat Cuma Ada Aku Dan Kamu TITIK!😠
+        </p>
+        <p class="petunjuk-klik">(Di Encet Agi Ya Ububb, Masih Ada 😘)</p>
+      </div>
+
+      <div class="slide">
+        <p>Aku Berjanji Dan Berusaha Untuk Selalu Ada Disamping Kamu Disaat Kamu Senang😁, Marah😡, Sedih🥺, Capek😰, Aku Selalu Siap Hari Ini, Besok, Dan Selamanya...Aamiin Inshaallah🤲</p>
+        <div class="hati-utama">💖</div>
+        <div class="penutup">
+          Dari aku yang selalu mencintaimu,
+          <br />[Koko Crunch-Nya AMUUUU😚]
+        </div>
+      </div>
+
+      <div class="slide">
+        <h1>I Love You🤍</h1>
+        <p>Selamat Ulang Tahun Sekali Lagi, Sayang😚💖.</p>
+        <p class="petunjuk-klik">(Ricardo🤍Novia)</p>
+      </div>
+    </div>
+
+          <div class="slide">
+        <h1>Aku Tunggu Balesan Kamu Dari WhatsApp Ya Cantik 🫶</h1>
+        <p>Aku Pengen Denger Langsung Ucapan Dari Kamu, Telpon Aku Ya Sayang 😚</p>
+        <a 
+          href="https://wa.me/6282178372668" 
+          target="_blank" 
+          style="
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+          "
+          onmouseover="this.style.transform='scale(1.1)'"
+          onmouseout="this.style.transform='scale(1)'"
+        >
+          💚 Kirim Pesan via WhatsApp
+        </a>
+        <p class="petunjuk-klik">(Klik Tombol Hijau Di Atas Ya Bubub🤭)</p>
+      </div>
+
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const totalSlides = slides.length;
+      const audio = document.getElementById("backsound");
+      const musicButton = document.getElementById("musicButton");
+      let isPlaying = false;
+      let heartsStarted = false;
+
+      function nextSlide() {
+        // mulai musik dan animasi hati saat klik pertama
+        if (!isPlaying) {
+          audio
+            .play()
+            .then(() => {
+              isPlaying = true;
+              musicButton.textContent = "🔊";
+            })
+            .catch((err) => console.log(err));
+        }
+
+        // animasi love baru dimulai setelah klik pertama
+        if (!heartsStarted) {
+          createHearts();
+          heartsStarted = true;
+        }
+
+        slides[currentSlide].classList.remove("active");
+        currentSlide++;
+        if (currentSlide >= totalSlides) currentSlide = 0;
+        slides[currentSlide].classList.add("active");
+      }
+
+      // tombol play/pause musik
+      musicButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (isPlaying) {
+          audio.pause();
+          musicButton.textContent = "🔈";
+        } else {
+          audio.play();
+          musicButton.textContent = "🔊";
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // fungsi untuk membuat animasi hati jatuh
+      function createHearts() {
+        const body = document.body;
+        const numberOfHearts = 20;
+
+        for (let i = 0; i < numberOfHearts; i++) {
+          const heart = document.createElement("div");
+          heart.classList.add("falling-heart");
+          heart.innerHTML = "❤️";
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.animationDuration = Math.random() * 5 + 5 + "s";
+          heart.style.animationDelay = Math.random() * 5 + "s";
+          heart.style.fontSize = Math.random() * 1.5 + 1 + "em";
+          heart.style.opacity = Math.random() * 0.7 + 0.3;
+          body.appendChild(heart);
+        }
+      }
+    </script>
+  </body>
+</html>
